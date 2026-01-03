@@ -1,0 +1,14 @@
+# Env
+.venv
+venv
+.env
+__pycache__
+
+# Configs
+config.json
+words.txt
+mappings.json
+
+# Corpuses
+*.xml
+*.zip

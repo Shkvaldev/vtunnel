@@ -1,0 +1,3 @@
+flask
+loguru
+vk_api

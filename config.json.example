@@ -1,0 +1,12 @@
+{
+  "providers": {
+    "vk": [
+      {
+        "login": "",
+        "password": "",
+        "totp_secret": "",
+        "token"
+      }
+    ]
+  }
+}
