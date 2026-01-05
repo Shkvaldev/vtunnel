@@ -7,7 +7,9 @@ from core import WordList
 
 # Downloading open russian corpus
 if not os.path.exists("annot.opcorpora.no_ambig_strict.xml"):
-    os.system("wget https://opencorpora.org/files/export/annot/annot.opcorpora.no_ambig_strict.xml.zip && unzip *.zip && rm annot.opcorpora.no_ambig_strict.xml.zip")
+    os.system(
+        "wget https://opencorpora.org/files/export/annot/annot.opcorpora.no_ambig_strict.xml.zip && unzip *.zip && rm annot.opcorpora.no_ambig_strict.xml.zip"
+    )
 tree = ET.parse("annot.opcorpora.no_ambig_strict.xml")
 root = tree.getroot()
 
@@ -22,8 +24,8 @@ for token in root.findall(".//token"):
             has_noun = True
             break
     if has_noun and token_text:
-        cleaned_text = re.sub(r'^[^\w]*|[^\w]*$', '', token_text)
-        if len(cleaned_text)>=3:
+        cleaned_text = re.sub(r"^[^\w]*|[^\w]*$", "", token_text)
+        if len(cleaned_text) >= 3:
             nouns.append(cleaned_text.lower())
 print(f"Generated wordlist of {len(nouns)} nouns")
 
@@ -44,7 +46,7 @@ for i in range(1, 4):
 if not combs:
     exit("Failed to generate mappings based on words.txt - enchance your dictionary!")
 
-mappings = {i : combs[i] for i in range(256)}
+mappings = {i: combs[i] for i in range(256)}
 
 with open("mappings.json", "w", encoding="utf-8") as f:
     json.dump(mappings, f, indent=4)

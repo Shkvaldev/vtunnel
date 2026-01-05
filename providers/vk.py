@@ -4,8 +4,9 @@ from loguru import logger
 
 from . import Provider
 
+
 class ProviderVK(Provider):
-    def __init__(self, token=None, logger = logger):
+    def __init__(self, token=None, logger=logger):
         self.logger = logger
         self.api = None
         self.token = token
@@ -33,4 +34,4 @@ class ProviderVK(Provider):
         """Entrypoint for dispatcher"""
         for event in self.longpoll.listen():
             if event.type == VkEventType.MESSAGE_NEW and event.to_me and event.text:
-                self.logger.debug(f'id{event.user_id}: {event.text}')
+                self.logger.debug(f"id{event.user_id}: {event.text}")

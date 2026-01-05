@@ -1,4 +1,3 @@
-import time
 from loguru import logger
 
 from config import Config
@@ -10,10 +9,9 @@ def main():
     config = Config("config.json")
     wl = WordList("words.txt")
 
-    vk = ProviderVK(
-        token = config.providers["vk"][0]["token"]
-    )
+    vk = ProviderVK(token=config.providers["vk"][0]["token"])
     vk.start()
+
 
 if __name__ == "__main__":
     try:

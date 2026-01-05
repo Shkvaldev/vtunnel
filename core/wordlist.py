@@ -1,9 +1,7 @@
 from loguru import logger
 
-class Node:
-    def __init__(self):
-        self.children = {}
-        self.is_leaf = False
+from . import Node
+
 
 class WordList:
     def __init__(self, path, logger=logger):
@@ -46,7 +44,7 @@ class WordList:
         """Finds all words with provided postfix"""
         if not postfix:
             return []
-        
+
         node = self.root
         for letter in reversed(postfix):
             if letter not in node.children:
@@ -66,27 +64,28 @@ class WordList:
                 stack.append((child_node, current_word + letter))
 
         return result
-    
+
     def find_by_depth(self, depth):
         if depth <= 0:
             return []
-            
+
         result = []
         stack = [(self.root, [], 0)]
-        
+
         while stack:
             node, chars, curr_depth = stack.pop()
-            
+
             if curr_depth == depth:
-                word = ''.join(reversed(chars))
+                word = "".join(reversed(chars))
                 result.append(word)
                 continue
-            
+
             if curr_depth < depth:
                 for letter, child_node in node.children.items():
                     stack.append((child_node, chars + [letter], curr_depth + 1))
-        
+
         return result
+
 
 if __name__ == "__main__":
     WordList("words.txt")

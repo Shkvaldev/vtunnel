@@ -14,3 +14,5 @@ them with client and server. This is needed because project uses linguistic steg
 ## TODO
 - `Dialogs` implementation
 - `Message Builder` implementation
+- `MaxProvider` implementation
+- `OKProvider` implementation
