@@ -1,6 +1,9 @@
 # Vtunnel
 > Simple proxy that uses white-listed services (like VK or MAX) to bypass censorship
 
+## !! WARNING !!
+> This project is under development and has not been finished yet! Btw this is not a final iteration - just proof-of-work!
+
 ## Setting up
 
 First of all, you must generate `words.txt`, `mappings.json` and `dialogs.json` and sync
