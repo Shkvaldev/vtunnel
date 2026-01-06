@@ -1,3 +1,4 @@
 flask
 loguru
 vk_api
+bidict

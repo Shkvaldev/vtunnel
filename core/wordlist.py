@@ -1,6 +1,10 @@
 from loguru import logger
 
-from . import Node
+
+class Node:
+    def __init__(self):
+        self.children = {}
+        self.is_leaf = False
 
 
 class WordList:
@@ -34,11 +38,29 @@ class WordList:
                 for word in f.readlines():
                     self.insert(word.strip().lower())
                     count += 1
-            self.logger.success(f"Wordlist of `{count}` words is ready!")
+            length = self.len()
+            self.logger.success(
+                f"Wordlist of `{length}` words is ready! (out of {count})"
+            )
         except Exception as e:
             err_msg = f"Failed to load wordlist from file `{self.path}`: {e}"
             self.logger.error(err_msg)
             raise ValueError(err_msg)
+
+    def len(self):
+        """Counts all unique words in the graph"""
+        count = 0
+        stack = [self.root]
+
+        while stack:
+            node = stack.pop()
+            if node.is_leaf:
+                count += 1
+
+            for child in node.children.values():
+                stack.append(child)
+
+        return count
 
     def find(self, postfix, limit=5):
         """Finds all words with provided postfix"""
@@ -66,6 +88,7 @@ class WordList:
         return result
 
     def find_by_depth(self, depth):
+        """Finds all words to a certain depth (length of postfix)"""
         if depth <= 0:
             return []
 
